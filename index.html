@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+  <head>
+    <title>noscript.me</title>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono|Permanent+Marker|Droid+Sans+Mono|Offside&subset=latin,cyrillic-ext,greek-ext,greek,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+
+      .terminal {
+        font-family: monospace;
+        white-space: nowrap;
+        font-size: 15px;
+        line-height: 15px;
+        padding: 10px;
+        background-image: url(img/white_wall_hash.png);
+      }
+
+      .reverse-video {
+        color: #000;
+        background: #f0f0f0;
+      }
+
+      body {
+        /* font-family: 'Droid Sans Mono', sans-serif; 
+        font-family: 'Ubuntu Mono', sans-serif; */
+        padding-top: 20px;
+        padding-bottom: 40px;
+        /* background-image: url(img/subtle_grunge.png); */
+      }
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 740px;
+      }
+
+      .masthead h3 {
+        font-family: 'Offside', cursive;
+      }
+
+      .short {
+        margin: 30px 0;
+        margin-left: 10%;
+        width: 80%;
+      }
+      
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        
+        /* margin: 96px 0; */
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-family: 'Permanent Marker', cursive;
+        text-decoration: bold;
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 40px 0;
+        font-size: 16px;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+
+      .term-shadow
+      {
+          position:relative;       
+          -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+             -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+                  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+      }
+      .term-shadow:before, .term-shadow:after
+      {
+        content:"";
+          position:absolute; 
+          z-index:-1;
+          -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+          -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+          box-shadow:0 0 20px rgba(0,0,0,0.8);
+          top:10px;
+          bottom:10px;
+          left:0;
+          right:0;
+          -moz-border-radius:100px / 10px;
+          border-radius:100px / 10px;
+      } 
+      .term-shadow:after
+      {
+        right:10px; 
+          left:auto;
+          -webkit-transform:skew(8deg) rotate(3deg); 
+             -moz-transform:skew(8deg) rotate(3deg);     
+              -ms-transform:skew(8deg) rotate(3deg);     
+               -o-transform:skew(8deg) rotate(3deg); 
+                  transform:skew(8deg) rotate(3deg);
+      }  
+
+    </style>
+  </head>
+  <body>
+    <div class="container-narrow">
+      <div class="masthead">
+          <ul class="nav nav-pills pull-right">
+            <li><a href="#"><i class="icon-lightbulb"></i></a></li>
+            <li><a href="#"><i class="icon-question"></i></a></li>
+          </ul>
+          <h3 class="muted"><i class="icon-code"></i> noscript.me</h3>
+        </div>
+
+        <div class="row-fluid term term-shadow"></div>
+
+        <div class="mastfoot">
+          
+        </div>
+        <div class="row-fluid marketing">
+          <div class="span6">
+            <h4>Lynx as a Service?</h4>
+            <p>Just when you thought that you could finally forget all about adhearing to users with javascript incapabable browsers, suddenly a promising text broswer as a service company appears out of seemigly nowhere.</p>
+
+            <h4>Surf in the name of Tor</h4>
+            <p>All traffic that you recieve and send out is relayed through the mighty network of Tor. Your connection to &lt;noscript.me&gt; is also encrypted. Is this enough to say that its secure? - Nobody knows <i class="icon-meh"></i></p>
+          </div>
+
+          <div class="span6">
+            <h4>A real terminal session</h4>
+            <p>Your terminal session is actually being run inside of its very own lxc-container, curtesy of Docker. The lxc-container is limited to a whooping two megabytes of memory. This ought to be enough for anybody.</p>
+
+            <h4>Open Source</h4>
+            <p>This website, socket.pty - the session provider, pty-browser - the Dockerfile for the currently running container, ansible playbook - for getting a new session provider up, fast!</p>
+          </div>
+        </div>
+
+        <hr class="short">
+        <div class="jumbotron">
+          <h1 class="muted">Text Browsing For The Win!</h1>
+        </div>
+        <!--
+        <hr>
+        <div class="footer">
+          <p>A weekend project by Daniel Waardal, 2013</p>
+        </div>
+        -->
+
+      </div> <!-- /container -->
+    </body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="js/bigtext.js"></script>
+  <script src="js/socket.io.js"></script>
+  <script src="js/term.js"></script>
+  <script>
+  $(function() {
+      var term = new Terminal(80, 24)
+        , socket = io.connect('https://noscript.me', {secure: true});
+
+      socket.on('connect', function() {
+        term.on('data', function(data) {
+          socket.emit('data', data);
+        });
+
+        //term.on('title', function(title) {
+        //  document.title = title;
+        //});
+
+        term.open();
+
+        socket.on('data', function(data) {
+          term.write(data);
+        });
+      });
+  });
+  </script>
+</html>
