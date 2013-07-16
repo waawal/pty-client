@@ -7,13 +7,28 @@
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
     <style>
 
-      .terminal {
+      .terminal-wrapper {
         font-family: monospace;
         white-space: nowrap;
-        font-size: 15px;
-        line-height: 15px;
+        font-size: 16px;
+        line-height: 18px;
+        width: 800px;
+        margin-left: 205px;
         padding: 10px;
+        min-height: 432px;
         background-image: url(img/white_wall_hash.png);
+        -webkit-transition: all 0.6s ease-out;
+        -moz-transition: all 0.6s ease-out;
+        -o-transition: all 0.6s ease-out;
+        -ms-transition: all 0.6s ease-out;
+        transition: all 0.6s ease-out;
+      }
+
+      .terminal-wrapper.theater {
+        font-size: 20px;
+        line-height: 23px;
+        width: 960px;
+        margin-left: 120px;
       }
 
       .reverse-video {
@@ -21,9 +36,10 @@
         background: #f0f0f0;
       }
 
+
       body {
-        /* font-family: 'Droid Sans Mono', sans-serif; 
-        font-family: 'Ubuntu Mono', sans-serif; */
+        /* font-family: 'Droid Sans Mono', sans-serif; */
+        font-family: 'Ubuntu Mono', sans-serif; 
         padding-top: 20px;
         padding-bottom: 40px;
         /* background-image: url(img/subtle_grunge.png); */
@@ -32,7 +48,30 @@
       .container-narrow {
         margin: 0 auto;
         max-width: 740px;
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        -ms-transition: opacity 1s ease-in-out;
+        transition: opacity 1s ease-in-out;
       }
+      .container-narrow.theater {
+        opacity: 0;
+      }
+
+      .container-top {
+        margin: 0 auto;
+        max-width: 780px;
+        -webkit-transition: all 0.6s ease-out;
+        -moz-transition: all 0.6s ease-out;
+        -o-transition: all 0.6s ease-out;
+        -ms-transition: all 0.6s ease-out;
+        transition: all 0.6s ease-out;
+      }
+
+      .container-top.theater {
+        max-width: 980px;;
+      }
+
 
       .masthead h3 {
         font-family: 'Offside', cursive;
@@ -44,25 +83,6 @@
         width: 80%;
       }
       
-
-      /* Main marketing message and sign up button */
-      .jumbotron {
-        
-        /* margin: 96px 0; */
-        text-align: center;
-      }
-      .jumbotron h1 {
-        font-family: 'Permanent Marker', cursive;
-        text-decoration: bold;
-        font-weight: 700;
-        font-size: 50px;
-        line-height: 1;
-      }
-      .jumbotron .btn {
-        font-size: 21px;
-        padding: 14px 24px;
-      }
-
       /* Supporting marketing content */
       .marketing {
         margin: 40px 0;
@@ -108,20 +128,22 @@
     </style>
   </head>
   <body>
-    <div class="container-narrow">
+    <div class="container-top">
       <div class="masthead">
           <ul class="nav nav-pills pull-right">
-            <li><a href="#"><i class="icon-lightbulb"></i></a></li>
-            <li><a href="#"><i class="icon-question"></i></a></li>
+            <li id="theater-pill"><a href="#" id="theater-toggle"><i class="icon-lightbulb"></i></a></li>
+            <li><a href="#" id ="help-toggle"><i class="icon-question"></i></a></li>
           </ul>
           <h3 class="muted"><i class="icon-code"></i> noscript.me</h3>
         </div>
 
-        <div class="row-fluid term term-shadow"></div>
-
-        <div class="mastfoot">
-          
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="term term-shadow terminal-wrapper"></div>
         </div>
+      </div>
+      <div class="container-narrow">
         <div class="row-fluid marketing">
           <div class="span6">
             <h4>Lynx as a Service?</h4>
@@ -140,16 +162,17 @@
           </div>
         </div>
 
-        <hr class="short">
-        <div class="jumbotron">
-          <h1 class="muted">Text Browsing For The Win!</h1>
-        </div>
-        <!--
-        <hr>
-        <div class="footer">
-          <p>A weekend project by Daniel Waardal, 2013</p>
-        </div>
-        -->
+Use <code>Up arrow</code> and <code>Down arrow</code> to scroll through hypertext links.
+
+<code>Right arrow</code> or <code>Return</code> will follow a highlighted hypertext link.
+
+<code>Left Arrow</code> will retreat from a link.
+
+Type <code>H</code> or <code>?</code> for online help and descriptions of key-stroke commands.
+
+Type <code>K</code> for a complete list of the current key-stroke command mappings.
+        
+        
 
       </div> <!-- /container -->
     </body>
@@ -159,25 +182,34 @@
   <script src="js/socket.io.js"></script>
   <script src="js/term.js"></script>
   <script>
-  $(function() {
-      var term = new Terminal(80, 24)
-        , socket = io.connect('https://noscript.me', {secure: true});
+    $(function() {
+        
+        var term = new Terminal(80, 24)
+          , socket = io.connect('https://noscript.me', {secure: true});
 
-      socket.on('connect', function() {
+        socket.on('connect', function() {
+          term.open();
+        });  
         term.on('data', function(data) {
           socket.emit('data', data);
         });
 
-        //term.on('title', function(title) {
-        //  document.title = title;
-        //});
-
-        term.open();
-
         socket.on('data', function(data) {
           term.write(data);
         });
+        //socket.on('data', function(data) {
+        //    term.write(data);
+        //});
+      
+
+      $('#theater-toggle').on('click', function(e){
+        e.preventDefault();
+        $('#theater-pill').toggleClass('active');
+        $('.term').toggleClass('theater');
+        $('.container-narrow').toggleClass('theater');
+        $('.container-top').toggleClass('theater');
       });
-  });
+
+    });
   </script>
 </html>
