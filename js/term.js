@@ -4185,7 +4185,8 @@ function isBoldBroken() {
   el.style.fontWeight = 'bold';
   var w2 = el.scrollWidth;
   document.body.removeChild(el);
-  return w1 !== w2;
+  // return w1 !== w2;
+  return true // yea yea... it brakes monospace
 }
 
 var String = this.String;
