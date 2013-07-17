@@ -192,7 +192,7 @@
         socket.on('connect', function() {
           $('.terminal-wrapper').addClass('active animated tada');
           setTimeout(function(){
-            //$('.terminal-wrapper').addClass('term-shadow').removeClass('animated tada');
+            $('.terminal-wrapper').removeClass('animated tada'); //.addClass('term-shadow')
           }, 1100);
           
           
