@@ -202,9 +202,9 @@
         
         
         socket.on('connect', function() {
-          $('.terminal-wrapper').addClass('active animated tada');
+          $('.terminal-wrapper').addClass('active animated flipInX');
           setTimeout(function(){
-            $('.terminal-wrapper').removeClass('animated tada'); //.addClass('term-shadow')
+            $('.terminal-wrapper').removeClass('animated flipInX'); //.addClass('term-shadow')
           }, 1100);
           
           
