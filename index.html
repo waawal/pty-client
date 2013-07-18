@@ -143,7 +143,7 @@
       <div class="masthead">
           <ul class="nav nav-pills pull-right">
             <li id="theater-pill"><a href="#" id="theater-toggle"><i class="icon-lightbulb"></i></a></li>
-            <li id="help-pill"><a href="#" id ="help-toggle"><i class="icon-question"></i></a></li>
+            <li id="help-pill"><a href="#" id ="help-toggle" role="button" class="btn" data-toggle="modal"><i class="icon-question"></i></a></li>
           </ul>
           <h3 class="muted"><i class="icon-code"></i> noscript.me</h3>
         </div>
@@ -175,10 +175,22 @@
         </footer>
         
       </div> <!-- /container -->
+      <div class="modal hide fade">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Important Keys</h3>
+        </div>
+        <div class="modal-body">
+          <p>Use <code>Up arrow</code> and <code>Down arrow</code> to scroll through hypertext links.</p>
+          <p><code>Right arrow</code> or <code>Return</code> will follow a highlighted hypertext link.</p>
+          <p><code>Left Arrow</code> will retreat from a link.</p>
+          <p>Type <code>H</code> or <code>?</code> for online help and descriptions of key-stroke commands.</p>
+          <p>Type <code>K</code> for a complete list of the current key-stroke command mappings.</p>
+        </div>
+      </div>
     </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-  <script src="js/flippant.js"></script>
   <script src="js/socket.io.js"></script>
   <script src="js/term.js"></script>
   <script>
@@ -203,9 +215,6 @@
           socket.on('data', function(data) {
             term.write(data);
           });
-          //socket.on('data', function(data) {
-          //    term.write(data);
-          //});
         });
 
       $('#theater-toggle').on('click', function(e){
@@ -216,29 +225,6 @@
         $('.container-narrow').fadeToggle(200);
         $('.container-top').toggleClass('theater');
       });
-
-      $('#help-toggle').on('click', function(e){
-        e.preventDefault();
-        $('#help-pill').toggleClass('active');
-        if (window.flip) {
-          window.flip.close();
-          window.flip = null;
-          setTimeout(function(){
-            $('.term').removeClass('flippant')
-          }, 1100);
-          
-        }
-        else {
-          $term = $('.term')[0]
-          backContent = "<p>Use <code>Up arrow</code> and <code>Down arrow</code> to scroll through hypertext links.</p>" +
-          "<p><code>Right arrow</code> or <code>Return</code> will follow a highlighted hypertext link.</p>" +
-          "<p><code>Left Arrow</code> will retreat from a link.</p>" +
-          "<p>Type <code>H</code> or <code>?</code> for online help and descriptions of key-stroke commands.</p>" +
-          "<p>Type <code>K</code> for a complete list of the current key-stroke command mappings.</p>"
-          window.flip = flippant.flip($term, backContent)
-        }
-      });
-
     });
   </script>
 </html>
